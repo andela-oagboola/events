@@ -15,6 +15,7 @@ if(process.env.NODE_ENV == 'dev') {
 app.use(server.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.disable('etag');
 routes(app);
 
 app.listen('8080', function(){

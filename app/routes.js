@@ -1,6 +1,8 @@
-var events = require('./controllers');
+var events = require('./events-controller');
+var users = require('./users-controller');
 
 module.exports = function(app){
+
     app.route('/events')
         .post(events.createEvent)
         .get(events.listEvents)
@@ -10,6 +12,15 @@ module.exports = function(app){
         .put(events.updateEvent)
         .delete(events.deleteEvent)
 
-    app.route('/events/:eventId')
-        .post(events.subscribe)
+    app.route('/users')
+        .get(users.listUsers)
+        .post(users.newUser)
+
+    app.route('/users/:userId')
+        .get(users.getUser)
+
+    app.route('/events/:eventId/users/:userId/subscribe')
+        .post(users.subscribe)
+
+
 };
